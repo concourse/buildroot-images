@@ -21,7 +21,7 @@ RUN             mkdir -p /tmp/builder
 WORKDIR         /tmp/builder
 
 # Retrieve files and check authenticity
-ENV             BR_VERSION 2016.02
+ENV             BR_VERSION 2016.05
 RUN             wget -nv http://buildroot.uclibc.org/downloads/buildroot-$BR_VERSION.tar.gz &&\
                 wget -nv http://buildroot.uclibc.org/downloads/buildroot-$BR_VERSION.tar.gz.sign &&\
                 wget -nv http://uclibc.org/~jacmet/pubkey.gpg &&\
