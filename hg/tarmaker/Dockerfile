@@ -35,6 +35,7 @@ WORKDIR         /tmp/builder/buildroot
 
 # Add config
 ADD             buildroot-config /tmp/builder/buildroot/.config
+RUN             echo 'BR2_PACKAGE_MERCURIAL=y' >> /tmp/builder/buildroot/.config
 
 # Add mercurial package
 ADD             mercurial /tmp/builder/buildroot/package/mercurial
