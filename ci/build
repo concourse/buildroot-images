@@ -22,7 +22,7 @@ until docker info >/dev/null 2>&1; do
   sleep 1
 done
 
-docker load ./buildroot-tarmaker-image/image
+docker load -i ./buildroot-tarmaker-image/image
 
 docker images
 
