@@ -1,50 +1,17 @@
-# Dockerfile for busybox+git using buildroot
-FROM            ubuntu:14.04
-MAINTAINER      Brian Clements <radial@brianclements.net>
+# Dockerfile for busybox using buildroot
+FROM            concourse/busyboxplus-tarmaker
 
-# Install packages
-ENV             DEBIAN_FRONTEND noninteractive
-RUN             apt-get -q update && apt-get -qyV install \
-                    wget \
-                    build-essential \
-                    libncurses-dev \
-                    rsync \
-                    unzip \
-                    bc \
-                    gnupg \
-                    python \
-                    libc6-i386
-RUN             env --unset=DEBIAN_FRONTEND
-
-# Create directories
-RUN             mkdir -p /tmp/builder
-WORKDIR         /tmp/builder
-
-# Retrieve files and check authenticity
-ENV             BR_VERSION 2016.05
-RUN             wget -nv http://buildroot.uclibc.org/downloads/buildroot-$BR_VERSION.tar.gz &&\
-                wget -nv http://buildroot.uclibc.org/downloads/buildroot-$BR_VERSION.tar.gz.sign &&\
-                wget -nv http://uclibc.org/~jacmet/pubkey.gpg &&\
-                gpg --import pubkey.gpg &&\
-                gpg --verify buildroot-$BR_VERSION.tar.gz.sign
-
-# Extract
-RUN             tar -zxf buildroot-$BR_VERSION.tar.gz &&\
-                mv buildroot-$BR_VERSION buildroot
-WORKDIR         /tmp/builder/buildroot
-
-
-# Add config
+# Import Buildroot source and config
+ADD             buildroot /tmp/builder/buildroot
 ADD             buildroot-config /tmp/builder/buildroot/.config
+WORKDIR         /tmp/builder/buildroot
 
 # Reformat config and prep for make
 RUN             make oldconfig
 
 # Make
 RUN             make --quiet
-
-# Done!
-RUN             cp /tmp/builder/buildroot/output/images/rootfs.tar /tmp/rootfs.tar
+RUN             cp output/images/rootfs.tar /tmp
 
 # Remove duplicate binaries, perl, and python scripts in git-suite and other
 # uneeded git files to bring down the image size. Reasoning and method
