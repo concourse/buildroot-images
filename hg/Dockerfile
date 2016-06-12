@@ -1,11 +1,15 @@
-FROM            scratch
-ADD             rootfs.tar /
+FROM scratch
 
-# Setup and source bashrc for tab-complete, shell coloring
-ADD             bashrc /root/.bashrc
-ENV             HOME /root
-ENV             ENV $HOME/.bashrc
+# import the actual image
+ADD rootfs.tar /
 
-ADD             hgrc /etc/mercurial/hgrc
+# reasonable LANG default
+ENV LANG en_US.UTF-8
 
-CMD             ["/bin/sh"]
+# satisfy golang crypto/x509
+RUN cat /etc/ssl/certs/*.pem > /etc/ssl/certs/ca-certificates.crt
+
+# wire in base hg configuration
+ADD hgrc /etc/mercurial/hgrc
+
+CMD ["/bin/sh"]

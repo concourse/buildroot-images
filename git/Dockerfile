@@ -1,14 +1,13 @@
-FROM            scratch
-ADD             rootfs.tar /
+FROM scratch
 
-# Setup and source bashrc for tab-complete, shell coloring
-ADD             bashrc /root/.bashrc
-ENV             HOME /root
-ENV             ENV $HOME/.bashrc
+# import the actual image
+ADD rootfs.tar /
 
-# Can't `git pull` unless we set these
-WORKDIR         /root
-RUN             git config --global user.email "git@localhost" &&\
-                git config --global user.name "git"
+# reasonable LANG default
+ENV LANG en_US.UTF-8
 
-CMD             ["/bin/sh"]
+# can't `git pull` unless we set these
+RUN git config --global user.email "git@localhost" && \
+      git config --global user.name "git"
+
+CMD ["/bin/sh"]
