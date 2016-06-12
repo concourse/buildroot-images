@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e -u
+
+VERSION="${1:-}"
+FLAVOR="${2:-}"
+
+function usage() {
+  echo "usage: $0 <version> <flavor>" >&2
+  exit 1
+}
+
+[ -n "$VERSION" ] || usage
+[ -n "$FLAVOR" ] || usage
+
+ROOT=$(cd $(dirname $0)/.. && pwd)
+
+if ! [ -d buildroot ]; then
+  git clone git://git.buildroot.net/buildroot
+fi
+
+cd buildroot
+
+git checkout $VERSION
+
+FLAVOR_CONFIG=$ROOT/$FLAVOR/tarmaker/buildroot-config
+
+make BR2_CONFIG=$FLAVOR_CONFIG menuconfig
+make BR2_CONFIG=$FLAVOR_CONFIG savedefconfig
+mv defconfig $FLAVOR_CONFIG
