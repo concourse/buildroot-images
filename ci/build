@@ -30,7 +30,7 @@ docker tag \
 
 docker images
 
-cd core-busyboxplus
+cd buildroot-images
 
 cp -a ./${FLAVOR}/* ${IMAGE_ROOT}
 

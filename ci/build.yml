@@ -6,7 +6,7 @@ image_resource:
   source: {repository: docker, tag: dind}
 
 inputs:
-- name: core-busyboxplus
+- name: buildroot-images
 - name: buildroot
 - name: buildroot-tarmaker-image
 
@@ -17,4 +17,4 @@ params:
   FLAVOR:
 
 run:
-  path: core-busyboxplus/ci/build
+  path: buildroot-images/ci/build
