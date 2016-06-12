@@ -3,6 +3,8 @@ FROM scratch
 # import the actual image
 ADD rootfs.tar /
 
+# reasonable LANG default
+#
 # NOTE: en_US.UTF-8 causes 'push --rebase' to fail with:
 #    Out of memory, getdelim failed
 ENV LANG C

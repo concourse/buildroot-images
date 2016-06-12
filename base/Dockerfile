@@ -4,7 +4,7 @@ FROM scratch
 ADD rootfs.tar /
 
 # reasonable LANG default
-ENV LANG en_US.UTF-8
+ENV LANG C
 
 # satisfy golang crypto/x509
 RUN cat /etc/ssl/certs/*.pem > /etc/ssl/certs/ca-certificates.crt
