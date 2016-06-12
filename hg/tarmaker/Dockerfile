@@ -4,13 +4,12 @@ FROM            concourse/busyboxplus-tarmaker
 # Import Buildroot source and config
 ADD             buildroot /tmp/builder/buildroot
 ADD             buildroot-config /tmp/builder/buildroot/.config
-RUN             echo 'BR2_PACKAGE_MERCURIAL=y' >> /tmp/builder/buildroot/.config
+WORKDIR         /tmp/builder/buildroot
 
 # Add mercurial package
 ADD             mercurial /tmp/builder/buildroot/package/mercurial
 RUN             echo 'source "package/mercurial/Config.in"' >> package/Config.in
-
-WORKDIR         /tmp/builder/buildroot
+RUN             echo 'BR2_PACKAGE_MERCURIAL=y' >> .config
 
 # Change host python configuration to include bzip2
 ADD             python.mk /tmp/builder/buildroot/package/python
