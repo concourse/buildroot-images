@@ -3,6 +3,7 @@
 set -e -x
 
 IMAGE_ROOT="$PWD/image-root"
+BUILDROOT_SRC="$PWD/buildroot"
 
 mkdir -p /sys/fs/cgroup
 mountpoint -q /sys/fs/cgroup || \
@@ -25,7 +26,7 @@ cd core-busyboxplus
 
 cp -a ./${FLAVOR}/* ${IMAGE_ROOT}
 
-cp -a ./buildroot ./${FLAVOR}/tarmaker/buildroot
+cp -a "$BUILDROOT_SRC" ./${FLAVOR}/tarmaker/buildroot
 
 docker build -t tarmaker $FLAVOR/tarmaker
 docker run --name builder tarmaker
