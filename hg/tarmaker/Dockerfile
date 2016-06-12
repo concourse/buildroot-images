@@ -1,21 +1,5 @@
-# Dockerfile for busybox+hg using buildroot
-FROM            ubuntu:16.04
-
-# Install packages
-ENV             DEBIAN_FRONTEND noninteractive
-RUN             apt-get -q update && apt-get -qyV install \
-                    wget \
-                    build-essential \
-                    libncurses-dev \
-                    rsync \
-                    unzip \
-                    libbz2-dev \
-                    bc \
-                    gnupg \
-                    python \
-                    libc6-i386 \
-                    cpio
-RUN             env --unset=DEBIAN_FRONTEND
+# Dockerfile for busybox using buildroot
+FROM            concourse/busyboxplus-tarmaker
 
 # Create directories
 RUN             mkdir -p /tmp/builder
