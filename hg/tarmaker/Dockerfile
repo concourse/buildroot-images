@@ -1,5 +1,5 @@
 # Dockerfile for busybox+hg using buildroot
-FROM            ubuntu:14.04
+FROM            ubuntu:16.04
 
 # Install packages
 ENV             DEBIAN_FRONTEND noninteractive
