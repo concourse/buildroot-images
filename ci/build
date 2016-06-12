@@ -25,6 +25,8 @@ cd core-busyboxplus
 
 cp -a ./${FLAVOR}/* ${IMAGE_ROOT}
 
+cp -a ./buildroot ./${FLAVOR}/tarmaker/buildroot
+
 docker build -t tarmaker $FLAVOR/tarmaker
 docker run --name builder tarmaker
 docker cp builder:/tmp/rootfs.tar "$IMAGE_ROOT"

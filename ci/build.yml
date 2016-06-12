@@ -7,6 +7,7 @@ image_resource:
 
 inputs:
 - name: core-busyboxplus
+- name: buildroot
 
 outputs:
 - name: image-root
