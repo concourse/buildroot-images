@@ -8,4 +8,5 @@ RUN apt-get -q update && apt-get -y install \
       wget \
       bc \
       cpio \
-      libc6-i386
+      libc6-i386 \
+      libbz2-dev
