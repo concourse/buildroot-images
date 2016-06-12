@@ -5,4 +5,6 @@ RUN apt-get -q update && apt-get -y install \
       rsync \
       python \
       unzip \
-      wget
+      wget \
+      bc \
+      cpio
