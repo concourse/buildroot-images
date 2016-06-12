@@ -1,0 +1,8 @@
+FROM ubuntu:16.04
+
+RUN apt-get -q update && apt-get -y install \
+      build-essential \
+      rsync \
+      python \
+      unzip \
+      wget

@@ -8,6 +8,7 @@ image_resource:
 inputs:
 - name: core-busyboxplus
 - name: buildroot
+- name: buildroot-tarmaker-image
 
 outputs:
 - name: image-root

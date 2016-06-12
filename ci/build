@@ -1,6 +1,6 @@
 #!/bin/sh
 
-set -e -x
+set -e -u -x
 
 IMAGE_ROOT="$PWD/image-root"
 BUILDROOT_SRC="$PWD/buildroot"
@@ -21,6 +21,10 @@ until docker info >/dev/null 2>&1; do
   echo waiting for docker to come up...
   sleep 1
 done
+
+docker load ./buildroot-tarmaker-image/image
+
+docker images
 
 cd core-busyboxplus
 

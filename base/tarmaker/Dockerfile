@@ -1,19 +1,5 @@
 # Dockerfile for busybox using buildroot
-FROM            ubuntu:14.04
-
-# Install packages
-ENV             DEBIAN_FRONTEND noninteractive
-RUN             apt-get -q update && apt-get -qyV install \
-                    wget \
-                    build-essential \
-                    libncurses-dev \
-                    rsync \
-                    unzip \
-                    bc \
-                    gnupg \
-                    python \
-                    libc6-i386
-RUN             env --unset=DEBIAN_FRONTEND
+FROM            concourse/busyboxplus-tarmaker
 
 # Import Buildroot source and config
 ADD             buildroot /tmp/builder/buildroot
