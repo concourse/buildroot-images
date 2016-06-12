@@ -11,6 +11,9 @@ ADD             mercurial /tmp/builder/buildroot/package/mercurial
 RUN             echo 'source "package/mercurial/Config.in"' >> package/Config.in
 RUN             echo 'BR2_PACKAGE_MERCURIAL=y' >> .config
 
+# Change host python configuration to include bzip2
+ADD             python.mk /tmp/builder/buildroot/package/python
+
 # Reformat config and prep for make
 RUN             make oldconfig
 
