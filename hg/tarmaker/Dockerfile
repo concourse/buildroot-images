@@ -1,5 +1,5 @@
 # Dockerfile for busybox using buildroot
-FROM            concourse/busyboxplus-tarmaker
+FROM            concourse/buildroot-tarmaker
 
 # Create directories
 RUN             mkdir -p /tmp/builder

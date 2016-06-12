@@ -1,5 +1,5 @@
 # Dockerfile for busybox using buildroot
-FROM            concourse/busyboxplus-tarmaker
+FROM            concourse/buildroot-tarmaker
 
 # Import Buildroot source and config
 ADD             buildroot /tmp/builder/buildroot
