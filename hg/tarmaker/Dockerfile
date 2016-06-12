@@ -13,7 +13,8 @@ RUN             apt-get -q update && apt-get -qyV install \
                     bc \
                     gnupg \
                     python \
-                    libc6-i386
+                    libc6-i386 \
+                    cpio
 RUN             env --unset=DEBIAN_FRONTEND
 
 # Create directories
