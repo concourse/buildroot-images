@@ -24,6 +24,10 @@ done
 
 docker load -i ./buildroot-tarmaker-image/image
 
+docker tag \
+  $(docker images -q) \
+  $(cat buildroot-tarmaker-image/repository):$(cat buildroot-tarmaker-image/tag)
+
 docker images
 
 cd core-busyboxplus
