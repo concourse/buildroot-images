@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-MERCURIAL_VERSION = 3.7.2
+MERCURIAL_VERSION = 3.9.2
 MERCURIAL_SOURCE = mercurial-$(MERCURIAL_VERSION).tar.gz
 MERCURIAL_SITE = https://www.mercurial-scm.org/release
 MERCURIAL_LICENSE = GPLv2
