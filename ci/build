@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e -u -x
 
@@ -15,7 +15,7 @@ for d in `sed -e '1d;s/\([^\t]\)\t.*$/\1/' /proc/cgroups`; do
     mount -n -t cgroup -o $d cgroup /sys/fs/cgroup/$d
 done
 
-docker daemon -g /tmp/build/graph &
+dockerd --data-root /scratch/docker &
 trap "kill $!" EXIT
 
 until docker info >/dev/null 2>&1; do
